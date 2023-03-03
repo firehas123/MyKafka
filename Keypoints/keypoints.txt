@@ -1,0 +1,18 @@
+KEYPOINTS FOR KAFKA I2C
+
+Now as to whether you should design it like this, that depends on your message traffic. If you're not slamming it with events, it might be better to consider something like Thrift as a way to have your message components do bidirectional communication. Where Kafka really excels relative to its complexity is when you need to produce and consume massive volumes of data. That might not be the case for you.
+
+For example, one common use case with Kafka is to hook it up to a service like Storm, Apex or Samza for doing distributed processing of hundreds of GB or even TB of data. If your system has a high throughput requirement, that architecture would be a good one to consider as a starting point with Kafka for handling messages. With Storm, if you need to send messages back for reprocessing, you can always use the Kafka bolt to republish a message into Kafka to ensure it gets completely reprocessed.
+
+In event driven architecture, it is mentioned if we have a use case of heavy atomic transactions then we'll have to double think on implementing this architecture.
+
+
+kafka on heroku
+confluent cloud
+
+----------------------------------------
+EVENT DRIVEN
+concept of command and event
+
+
+Orchestration vs. Choreography
